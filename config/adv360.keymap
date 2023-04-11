@@ -39,11 +39,11 @@
 
         default_layer {
             bindings = <
- &kp EQUAL     &kp N1    &kp N2    &kp N3     &kp N4  &kp N5              &tog 1                                                                 &mo 3  &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
-   &kp TAB      &kp Q     &kp W     &kp F      &kp P   &kp B               &none                                                                 &none   &kp J   &kp L      &kp U     &kp Y  &kp SEMICOLON   &kp BSLH
-   &kp ESC      &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G    &none  &kp LCTRL  &kp LALT   &none   &none   &kp LGUI  &kp RCTRL      &none   &kp M   &hm RCTRL N      &hm RSHFT E     &hm RALT I          &hm RGUI O    &kp SQT
- &kp LSHFT      &kp Z     &kp X     &kp C      &kp D   &kp V               &none      &none  &kp HOME   &none   &none  &kp PG_UP      &none      &none   &kp K   &kp H  &kp COMMA   &kp DOT       &kp FSLH  &kp RSHFT
-     &mo 2  &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT                    &kp BSPC    &kp DEL   &kp END                  &kp PG_DN  &kp ENTER  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT       &kp RBKT      &mo 2
+     &kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5   &tog 1                                                          &mo 3   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
+     &kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B    &none                                                           &none   &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp BSLH
+     &kp BSPC       &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G    &none  &kp ESC  &kp LALT   &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &hm RCTRL N  &hm RSHFT E  &hm RALT I     &hm RGUI O     &kp SQT
+     &kp LSHFT      &kp Z          &kp X          &kp C            &kp D         &kp V    &none  &none    &kp HOME   &none   &none  &kp PG_UP  &none      &none   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo 2
+     &mo 2          &kp GRAVE      &kp CAPS       &kp LEFT         &kp ENTER              &sl 4  &kp ENTER &kp END                   &kp PG_DN  &kp SPACE  &sl 5           &kp SPACE    &kp DOWN     &kp LBKT       &kp RBKT       &mo 1
             >;
         };
 
@@ -59,11 +59,11 @@
 
         layer_fn {
             bindings = <
- &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6            &tog 1                                                   &mo 3  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
- &trans  &trans  &trans  &trans  &trans  &trans             &none                                                   &none  &trans  &trans  &trans   &trans   &trans   &trans
- &trans  &trans  &trans  &trans  &trans  &trans             &none  &trans  &trans   &none   &none  &trans  &trans   &none  &trans  &trans  &trans   &trans   &trans   &trans
- &trans  &trans  &trans  &trans  &trans  &trans             &none   &none  &trans   &none   &none  &trans   &none   &none  &trans  &trans  &trans   &trans   &trans   &trans
- &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans                  &trans  &trans  &trans          &trans  &trans   &trans   &trans   &trans
+ &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6            &tog 1                                                   &mo 3  &kp F7  &kp F8    &kp F9  &kp F10  &kp F11  &kp F12
+ &trans  &trans  &trans  &trans  &trans  &trans             &none                                                   &none  &trans  &trans    &kp UP   &trans   &trans   &trans
+ &trans  &trans  &trans  &trans  &trans  &trans             &none  &trans  &trans   &none   &none  &trans  &trans   &none  &trans  &kp LEFT  &kp DOWN &kp RIGHT   &trans   &trans
+ &trans  &trans  &trans  &trans  &trans  &trans             &none   &none  &trans   &none   &none  &trans   &none   &none  &trans  &trans    &trans   &trans   &trans   &trans
+ &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans                  &trans  &trans  &trans          &trans    &trans   &trans   &trans   &trans
             >;
         };
 
@@ -77,5 +77,24 @@
             >;
         };
 
+        layer_lmod {
+            bindings = <
+  &kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4  &kp N5              &tog 1                                                                 &mo 3  &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
+  &kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4  &kp N5              &none                                                                 &none  &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
+  &none         &none         &none         &none         &none         &none            &none &none &none   &none   &none  &none &none &none &none         &none         &none         &none         &none   &none
+ &none  &none  &none  &none  &none  &none             &none   &none  &none   &none   &none  &none   &none   &none  &none  &none  &none   &none   &none   &none
+ &none  &none  &none  &none  &none                    &none  &none  &none                  &none  &none  &none          &none  &none   &none   &none   &none
+            >;
+        };
+
+        layer_rmod {
+            bindings = <
+  &kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4  &kp N5              &tog 1                                                                 &mo 3  &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
+  &kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4  &kp N5              &none                                                                 &none   &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
+  &none         &none         &none         &none         &none         &none            &none &none &none   &none   &none  &none &none &none &none         &none         &none         &none         &none   &none
+ &none  &none  &none  &none  &none  &none             &none   &none  &none   &none   &none  &none   &none   &none  &none  &none  &none   &none   &none   &none
+ &none  &none  &none  &none  &none                    &none  &none  &none                  &none  &none  &none          &none  &none   &none   &none   &none
+            >;
+        };
     };
 };
