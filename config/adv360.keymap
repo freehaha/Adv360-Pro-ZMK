@@ -18,6 +18,18 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/backlight.h>
 
+#define DEFAULT 0
+#define _LSYM   1
+#define _RSYM   2
+#define _KPAD   3
+#define _FN     4
+#define _MOD    5
+#define HYPER    LS(LC(LA(LGUI)))
+
+&sl {
+    release-after-ms = <400>;
+};
+
 / {
   behaviors {
     #include "macros.dtsi"
@@ -33,21 +45,41 @@
     };
   };
 
-    keymap {
-        compatible = "zmk,keymap";
+	keymap {
+		compatible = "zmk,keymap";
 
 
-        default_layer {
+		default_layer {
+			bindings = <
+				&kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5     &tog _KPAD                                                     &mo _MOD   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
+				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B      &none                                                          &none   &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp BSLH
+				&kp ESC        &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G      &kp HYPER  &kp ESC       &kp LALT   &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &hm RCTRL N  &hm RSHFT E  &hm RALT I     &hm RGUI O     &kp SQT
+				&mo _FN        &kp Z          &kp X          &kp C            &kp D         &kp V      &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &none   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo _FN
+				&mo _FN        &kp GRAVE      &none          &kp ESC          &kp ESC       &kp BSPC   &sl _LSYM  &kp END                   &kp PG_DN  &sl _RSYM &kp SPACE        &kp GRAVE  &kp ENTER    &kp ENTER       &kp RBKT       &mo _FN
+			>;
+		};
+
+        layer_lsym {
             bindings = <
-     &kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5   &tog 1                                                          &mo 3   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
-     &kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B    &none                                                           &none   &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp BSLH
-     &kp BSPC       &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G    &none  &kp ESC  &kp LALT   &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &hm RCTRL N  &hm RSHFT E  &hm RALT I     &hm RGUI O     &kp SQT
-     &kp LSHFT      &kp Z          &kp X          &kp C            &kp D         &kp V    &none  &none    &kp HOME   &none   &none  &kp PG_UP  &none      &none   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo 2
-     &mo 2          &kp GRAVE      &kp CAPS       &kp LEFT         &kp ENTER              &sl 4  &kp ENTER &kp END                   &kp PG_DN  &kp SPACE  &sl 5           &kp SPACE    &kp DOWN     &kp LBKT       &kp RBKT       &mo 1
+				&kp EQUAL     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &tog _KPAD                                                  &mo _MOD  &kp N6      &kp N7       &kp N8          &kp N9                &kp N0       &trans
+				&kp EQUAL     &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT     &none                                                       &none     &kp CARET   &kp AMPS     &kp ASTRK       &kp LPAR              &kp RPAR     &trans
+				&none         &kp TAB       &none         &kp DQT       &kp SQT       &kp CAPS      &none          &none  &none   &none   &none  &none   &none  &none     &kp COLON   &kp UNDER    &kp PLUS        &kp LBKT              &kp RBKT     &none
+				&none         &none         &none         &none         &none         &none         &none          &none  &none   &none   &none  &none   &none  &none     &none       &kp PIPE     &kp LESS_THAN   &kp GREATER_THAN      &kp QMARK    &none
+				&none         &none         &none         &none         &none         &none         &none          &none                                 &none  &kp ESC   &none       &none        &none           &none                 &none        &none
             >;
         };
 
-        layer_keypad {
+        layer_rsym {
+            bindings = <
+				&kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4       &kp N5     &tog _KPAD                                                   &mo _MOD    &kp N6         &kp N7     &kp N8        &kp N9        &kp N0  &kp MINUS
+				&kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4       &kp N5     &none                                                        &none       &kp N6         &kp N7     &kp N8        &kp N9        &kp N0  &kp MINUS
+				&none         &kp F1        &kp F2    &kp F3     &kp F4       &kp F5     &none         &none    &none   &none   &none  &none  &none   &none       &kp F6         &kp MINUS  &kp EQUAL     &none         &none  &none
+				&none         &kp F7        &kp F8    &kp F9     &kp F10      &kp F11    &none         &none    &none   &none   &none  &none  &none   &none       &kp F12        &none      &none         &none         &none   &none
+				&none         &none         &none     &none      &none        &none      &kp ESC       &none                                  &none   &trans      &none          &none      &none         &none         &none   &none
+            >;
+        };
+
+		layer_keypad {
             bindings = <
  &kp EQUAL     &kp N1    &kp N2    &kp N3     &kp N4  &kp N5              &trans                                                                 &mo 3  &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
    &kp TAB      &kp Q     &kp W     &kp E      &kp R   &kp T               &none                                                                 &none   &kp Y   &kp KP_N7     &kp KP_N8      &kp KP_N9     &kp KP_MINUS   &kp BSLH
@@ -59,7 +91,7 @@
 
         layer_fn {
             bindings = <
- &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6            &tog 1                                                   &mo 3  &kp F7  &kp F8    &kp F9  &kp F10  &kp F11  &kp F12
+ &trans  &trans  &trans  &trans  &trans  &trans             &none                                                   &none  &trans  &trans    &trans   &trans   &trans   &trans
  &trans  &trans  &trans  &trans  &trans  &trans             &none                                                   &none  &trans  &trans    &kp UP   &trans   &trans   &trans
  &trans  &trans  &trans  &trans  &trans  &trans             &none  &trans  &trans   &none   &none  &trans  &trans   &none  &trans  &kp LEFT  &kp DOWN &kp RIGHT   &trans   &trans
  &trans  &trans  &trans  &trans  &trans  &trans             &none   &none  &trans   &none   &none  &trans   &none   &none  &trans  &trans    &trans   &trans   &trans   &trans
@@ -77,24 +109,5 @@
             >;
         };
 
-        layer_lmod {
-            bindings = <
-  &kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4  &kp N5              &tog 1                                                                 &mo 3  &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
-  &kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4  &kp N5              &none                                                                 &none  &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
-  &none         &none         &none         &none         &none         &none            &none &none &none   &none   &none  &none &none &none &none         &none         &none         &none         &none   &none
- &none  &none  &none  &none  &none  &none             &none   &none  &none   &none   &none  &none   &none   &none  &none  &none  &none   &none   &none   &none
- &none  &none  &none  &none  &none                    &none  &none  &none                  &none  &none  &none          &none  &none   &none   &none   &none
-            >;
-        };
-
-        layer_rmod {
-            bindings = <
-  &kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4  &kp N5              &tog 1                                                                 &mo 3  &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
-  &kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4  &kp N5              &none                                                                 &none   &kp N6  &kp N7     &kp N8    &kp N9         &kp N0  &kp MINUS
-  &none         &none         &none         &none         &none         &none            &none &none &none   &none   &none  &none &none &none &none         &none         &none         &none         &none   &none
- &none  &none  &none  &none  &none  &none             &none   &none  &none   &none   &none  &none   &none   &none  &none  &none  &none   &none   &none   &none
- &none  &none  &none  &none  &none                    &none  &none  &none                  &none  &none  &none          &none  &none   &none   &none   &none
-            >;
-        };
     };
 };
