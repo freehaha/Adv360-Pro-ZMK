@@ -24,9 +24,13 @@
 #define _KPAD   3
 #define _FN     4
 #define _MOD    5
+#define GAME    6
+#define GEXT    7
+
 #define HYPER    LS(LC(LA(LGUI)))
 #define WWW_PT LC(PG_UP)
 #define WWW_NT LC(PG_DN)
+#define TMUX_PFX LC(A)
 
 &sl {
     release-after-ms = <400>;
@@ -54,6 +58,15 @@
         flavor = "tap-preferred";
         bindings = <&mo>, <&kp>;
     };
+    lt_rp_hp: lt_repeat_holdpreferred {
+        compatible = "zmk,behavior-hold-tap";
+        label = "LT_REPEAT_HOLD_PREFERRED";
+        #binding-cells = <2>;
+        tapping-term-ms = <150>;
+        quick_tap_ms = <200>;
+        flavor = "hold-preferred";
+        bindings = <&mo>, <&kp>;
+    };
   };
 
 	keymap {
@@ -63,10 +76,10 @@
 		default_layer {
 			bindings = <
 				&kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5     &tog _KPAD                                                     &mo _MOD   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
-				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B      &none                                                          &none   &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp BSLH
+				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B      &none                                                          &none   &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp TMUX_PFX
 				&kp ESC        &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G      &kp HYPER  &kp LCTRL     &kp LALT   &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &hm RCTRL N  &hm RSHFT E  &hm RALT I     &hm RGUI O     &kp SQT
 				&mo _FN        &kp Z          &kp X          &kp C            &kp D         &kp V      &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &none   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo _FN
-				&mo _FN        &kp GRAVE      &none          &kp ESC          &kp ESC       &lt_rp _LSYM BSPC   &kp ENTER  &kp END                   &kp PG_DN  &kp TAB    &lt_rp _RSYM SPACE        &kp GRAVE  &kp ENTER    &kp ENTER       &kp RBKT       &mo _FN
+				&mo _FN        &kp GRAVE      &none          &kp ESC          &kp ESC       &lt_rp_hp _LSYM BSPC   &kp ENTER  &kp END                   &kp PG_DN  &kp TAB    &lt_rp _RSYM SPACE        &kp GRAVE  &kp ENTER    &kp ENTER       &kp RBKT       &mo _FN
 			>;
 		};
 
@@ -76,7 +89,7 @@
 				&kp EQUAL     &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT     &none                                                       &none     &kp CARET   &kp AMPS     &kp ASTRK       &kp LPAR              &kp RPAR     &trans
 				&none         &kp TAB       &none         &kp DQT       &kp SQT       &kp CAPS      &none          &none  &none   &none   &none  &none   &none  &none     &kp COLON   &kp UNDER    &kp PLUS        &kp LBRC              &kp RBRC     &none
 				&none         &none         &none         &none         &none         &none         &none          &none  &none   &none   &none  &none   &none  &none     &none       &kp PIPE     &kp LESS_THAN   &kp GREATER_THAN      &kp QMARK    &tog _FN
-				&none         &none         &none         &none         &none         &kp DEL       &none          &none                                 &none  &kp ESC   &none       &none        &none           &none                 &none        &none
+				&none         &none         &none         &none         &none         &trans        &none          &none                                 &none  &kp LS(TAB)   &kp ESC     &none        &none           &none                 &none        &none
             >;
         };
 
@@ -85,8 +98,8 @@
 				&kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4       &kp N5     &tog _KPAD                                                   &mo _MOD    &kp N6         &kp N7     &kp N8        &kp N9        &kp N0    &kp MINUS
 				&kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4       &kp N5     &none                                                        &none       &kp N6         &kp N7     &kp N8        &kp N9        &kp N0    &kp MINUS
 				&none         &kp F1        &kp F2    &kp F3     &kp F4       &kp F5     &none         &none    &none   &none   &none  &none  &none   &none       &kp F6         &kp MINUS  &kp EQUAL     &kp LBKT      &kp RBKT  &none
-				&none         &kp F7        &kp F8    &kp F9     &kp F10      &kp F11    &none         &none    &none   &none   &none  &none  &none   &none       &kp F12        &none      &none         &none         &none     &none
-				&none         &none         &none     &none      &none        &none      &kp ESC       &none                                  &none   &trans      &none          &none      &none         &none         &none     &none
+				&none         &kp F7        &kp F8    &kp F9     &kp F10      &kp F11    &none         &none    &none   &none   &none  &none  &none   &none       &kp F12        &kp BSLH   &none         &none         &none     &none
+				&none         &none         &none     &none      &none        &kp ESC    &kp DEL       &none                                  &none   &none       &trans         &none      &none         &none         &none     &none
             >;
         };
 
@@ -119,6 +132,25 @@
   &none         &none         &none    &bl BL_INC    &bl BL_DEC                                 &rgb_ug RGB_TOG  &bl BL_TOG   &none                       &none  &bl BL_TOG         &rgb_ug RGB_TOG                  &bl BL_INC    &bl BL_DEC         &none         &none   &none
             >;
         };
+		
+		layer_game {
+			bindings = <
+				&kp GRAVE      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5     &kp N6                                                                   &kp RIGHT   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
+				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B      &kp KP_N5                                                                &none     &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp TMUX_PFX
+				&kp LCTRL      &kp A          &kp R          &kp S            &kp T         &kp G      &kp K      &mo GEXT      &kp ENTER  &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &kp N  &kp E  &kp I     &kp O     &kp SQT
+				&kp LSHFT      &kp Z          &kp X          &kp C            &kp D         &kp V      &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &to 0   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo _FN
+				&kp ESC        &kp F10        &none          &kp GRAVE        &kp LALT      &kp LSHFT  &kp SPACE  &kp END                                            &kp PG_DN  &kp TAB    &lt_rp _RSYM SPACE        &kp GRAVE  &kp ENTER    &kp ENTER       &kp RBKT       &mo _FN
+			>;
+		};
+		layer_game_ext {
+			bindings = <
+				&kp GRAVE      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5     &kp N6                                                                   &kp RIGHT   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
+				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B      &kp KP_N5                                                                &none     &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp TMUX_PFX
+				&kp LCTRL      &kp A          &kp R          &kp S            &kp T         &kp G      &kp K      &none         &kp ENTER  &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &kp N  &kp E  &kp I     &kp O     &kp SQT
+				&kp LSHFT      &kp Z          &kp X          &kp C            &kp D         &kp V      &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &to 0   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo _FN
+				&kp ESC        &kp F10        &none          &kp GRAVE        &kp LALT      &kp LSHFT  &kp SPACE  &kp END                                            &kp PG_DN  &kp TAB    &lt_rp _RSYM SPACE        &kp GRAVE  &kp ENTER    &kp ENTER       &kp RBKT       &mo _FN
+			>;
+		};
 
     };
 };
