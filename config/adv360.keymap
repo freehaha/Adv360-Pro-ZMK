@@ -105,21 +105,21 @@
 
 		layer_keypad {
             bindings = <
- &kp EQUAL     &kp N1    &kp N2    &kp N3     &kp N4  &kp N5              &trans                                                                 &mo _MOD  &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
-   &kp TAB      &kp Q     &kp W     &kp E      &kp R   &kp T               &none                                                                 &none   &kp Y   &kp KP_N7     &kp KP_N8      &kp KP_N9     &kp KP_MINUS   &kp BSLH
-   &kp ESC      &kp A     &kp S     &kp D      &kp F   &kp G               &none  &kp LCTRL  &kp LALT   &none   &none   &kp LGUI  &kp RCTRL      &to 0   &kp H   &kp KP_N4     &kp KP_N5      &kp KP_N6      &kp KP_PLUS    &kp SQT
- &kp LSHFT      &kp Z     &kp X     &kp C      &kp V   &kp B               &none      &none  &kp HOME   &none   &none  &kp PG_UP      &none      &none   &kp N   &kp KP_N1     &kp KP_N2      &kp KP_N3     &kp KP_ENTER  &kp RSHFT
-     &mo 2  &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT                    &kp BSPC    &kp DEL   &kp END                  &kp PG_DN  &kp ENTER  &kp KP_N0              &kp UP      &kp DOWN     &kp KP_DOT         &kp RBKT      &mo 2
+				&kp EQUAL      &kp N1     &kp N2    &kp N3     &kp N4        &kp N5     &trans                                                               &mo _MOD   &kp N6      &kp KP_NUM    &kp KP_EQUAL   &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
+				&kp TAB        &kp Q      &kp W     &kp E      &kp R         &kp T      &none                                                                &none      &kp Y       &kp KP_N7     &kp KP_N8      &kp KP_N9     &kp KP_MINUS   &kp BSLH
+				&kp ESC        &kp A      &kp S     &kp D      &kp F         &kp G      &none     &kp LCTRL  &kp LALT   &none   &none   &kp LGUI  &kp RCTRL  &to 0      &kp H       &kp KP_N4     &kp KP_N5      &kp KP_N6      &kp KP_PLUS    &kp SQT
+				&kp LSHFT      &kp Z      &kp X     &kp C      &kp V         &kp B      &none     &none      &kp HOME   &none   &none  &kp PG_UP  &none      &none      &kp N       &kp KP_N1     &kp KP_N2      &kp KP_N3     &kp KP_ENTER  &kp RSHFT
+				&mo 2          &kp GRAVE  &kp CAPS  &kp LEFT   &kp RIGHT     &kp BSPC   &kp DEL   &kp END                                         &kp PG_DN  &kp ENTER  &kp KP_N0   &kp UP        &kp DOWN       &kp KP_DOT         &kp RBKT      &mo 2
             >;
         };
 
         layer_fn {
             bindings = <
- &trans  &trans  &trans  &trans  &trans  &trans                 &none                                                   &none  &trans  &trans    &trans   &trans   &trans   &trans
- &trans  &kp WWW_PT  &trans  &trans  &trans  &trans             &none                                                   &none  &trans  &kp PG_UP    &kp UP   &kp PG_DN   &kp HOME   &trans
- &trans  &kp WWW_NT  &trans  &trans  &trans  &trans             &none   &trans  &trans   &none   &none  &trans  &trans  &to 0  &trans  &kp LEFT  &kp DOWN &kp RIGHT   &kp END   &trans
- &trans  &kp LS(LC(T))  &kp LC(W)  &trans  &trans  &trans       &none   &none  &trans   &none   &none  &trans   &none   &none  &trans  &trans    &trans   &trans   &trans   &trans
- &trans  &trans  &trans  &trans  &trans                         &trans  &trans  &trans                  &trans  &trans  &trans          &trans    &trans   &trans   &trans   &trans
+				&to GAME &trans         &trans     &trans  &trans  &trans    &none                                                   &none  &trans  &trans    &trans   &trans   &trans   &trans
+				&trans   &kp WWW_PT     &trans     &trans  &trans  &trans    &none                                                   &none  &trans  &kp PG_UP    &kp UP   &kp PG_DN   &kp HOME   &trans
+				&trans   &kp WWW_NT     &trans     &trans  &trans  &trans    &none   &trans  &trans   &none   &none  &trans  &trans  &to 0  &trans  &kp LEFT  &kp DOWN &kp RIGHT   &kp END   &trans
+				&trans   &kp LS(LC(T))  &kp LC(W)  &trans  &trans  &trans    &none   &none  &trans   &none   &none  &trans   &none   &none  &trans  &trans    &trans   &trans   &trans   &trans
+				&trans   &trans         &trans     &trans  &trans  &trans    &trans  &trans                                  &trans  &trans  &trans          &trans    &trans   &trans   &trans   &trans
             >;
         };
 
@@ -135,20 +135,20 @@
 		
 		layer_game {
 			bindings = <
-				&kp GRAVE      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5     &kp N6                                                                   &kp RIGHT   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
-				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B      &kp KP_N5                                                                &none     &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp TMUX_PFX
-				&kp LCTRL      &kp A          &kp R          &kp S            &kp T         &kp G      &kp K      &mo GEXT      &kp ENTER  &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &kp N  &kp E  &kp I     &kp O     &kp SQT
-				&kp LSHFT      &kp Z          &kp X          &kp C            &kp D         &kp V      &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &to 0   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo _FN
-				&kp ESC        &kp F10        &none          &kp GRAVE        &kp LALT      &kp LSHFT  &kp SPACE  &kp END                                            &kp PG_DN  &kp TAB    &lt_rp _RSYM SPACE        &kp GRAVE  &kp ENTER    &kp ENTER       &kp RBKT       &mo _FN
+				&kp GRAVE      &kp N1      &kp N2      &kp N3        &kp N4        &kp N5     &kp N6                                                                   &kp RIGHT   &kp N6               &kp N7       &kp N8         &kp N9     &kp N0          &kp MINUS
+				&kp TAB        &kp Q       &kp W       &kp F         &kp P         &kp B      &kp KP_N5                                                                &none       &kp J                &kp L        &kp U          &kp Y      &kp SEMICOLON   &kp TMUX_PFX
+				&kp LCTRL      &kp A       &kp R       &kp S         &kp T         &kp G      &kp K      &mo GEXT      &kp ENTER  &none   &none  &kp LGUI   &kp RCTRL  &to 0       &kp M                &kp N        &kp E          &kp I      &kp O           &kp SQT
+				&kp LSHFT      &kp Z       &kp X       &kp C         &kp D         &kp V      &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &none       &kp K                &kp H        &kp COMMA      &kp DOT    &kp FSLH        &mo _FN
+				&kp ESC        &kp F10     &none       &kp GRAVE     &kp LALT      &kp LSHFT  &kp SPACE  &kp END                                            &kp PG_DN  &kp TAB     &lt_rp _RSYM SPACE   &kp GRAVE    &kp ENTER      &kp ENTER  &kp RBKT        &mo _FN
 			>;
 		};
 		layer_game_ext {
 			bindings = <
-				&kp GRAVE      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5     &kp N6                                                                   &kp RIGHT   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
-				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B      &kp KP_N5                                                                &none     &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp TMUX_PFX
-				&kp LCTRL      &kp A          &kp R          &kp S            &kp T         &kp G      &kp K      &none         &kp ENTER  &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &kp N  &kp E  &kp I     &kp O     &kp SQT
-				&kp LSHFT      &kp Z          &kp X          &kp C            &kp D         &kp V      &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &to 0   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo _FN
-				&kp ESC        &kp F10        &none          &kp GRAVE        &kp LALT      &kp LSHFT  &kp SPACE  &kp END                                            &kp PG_DN  &kp TAB    &lt_rp _RSYM SPACE        &kp GRAVE  &kp ENTER    &kp ENTER       &kp RBKT       &mo _FN
+				&kp ESC      &kp N1       &kp N2       &kp N3        &kp N4      &kp N5     &kp N6                                                                   &kp RIGHT   &kp N6                 &kp N7       &kp N8         &kp N9       &kp N0          &kp MINUS
+				&kp LBKT     &kp KP_N1    &kp KP_N2    &kp KP_N3     &kp KP_N4   &kp KP_N5  &trans                                                                   &none       &kp J                  &kp L        &kp U          &kp Y        &kp SEMICOLON   &kp TMUX_PFX
+				&kp RBKT     &kp F11      &kp R        &kp S         &kp GRAVE   &kp F12    &trans     &none      &kp ENTER  &none   &none  &kp LGUI   &kp RCTRL  &to 0       &kp M                  &kp N        &kp E          &kp I        &kp O           &kp SQT
+				&kp LSHFT    &kp LA(M)    &kp X        &kp C         &kp D       &kp V      &none      &none      &kp HOME   &none   &none  &kp PG_UP  &none      &none       &kp K                  &kp H        &kp COMMA      &kp DOT      &kp FSLH        &mo _FN
+				&kp ESC      &kp F10      &none        &kp GRAVE     &kp LALT    &kp LSHFT  &kp SPACE  &kp END                                            &kp PG_DN  &kp TAB     &lt_rp _RSYM SPACE     &kp GRAVE    &kp ENTER      &kp ENTER    &kp RBKT        &mo _FN
 			>;
 		};
 
