@@ -53,9 +53,9 @@
         compatible = "zmk,behavior-hold-tap";
         label = "LT_REPEAT";
         #binding-cells = <2>;
-        tapping-term-ms = <150>;
-        quick_tap_ms = <200>;
-        flavor = "tap-preferred";
+        tapping-term-ms = <130>;
+        quick_tap_ms = <180>;
+        flavor = "balanced";
         bindings = <&mo>, <&kp>;
     };
     lt_rp_hp: lt_repeat_holdpreferred {
@@ -75,21 +75,21 @@
 
 		default_layer {
 			bindings = <
-				&kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5     &tog _KPAD                                                     &mo _MOD   &kp N6       &kp N7       &kp N8         &kp N9         &kp N0  &kp MINUS
-				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B      &none                                                          &none   &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON   &kp TMUX_PFX
-				&kp ESC        &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G      &kp HYPER  &kp LCTRL     &kp LALT   &none   &none  &kp LGUI   &kp RCTRL  &none   &kp M   &hm RCTRL N  &hm RSHFT E  &hm RALT I     &hm RGUI O     &kp SQT
-				&mo _FN        &kp Z          &kp X          &kp C            &kp D         &kp V      &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &none   &kp K   &kp H        &kp COMMA    &kp DOT        &kp FSLH       &mo _FN
-				&mo _FN        &kp GRAVE      &none          &kp ESC          &kp ESC       &lt_rp_hp _LSYM BSPC   &kp ENTER  &kp END                   &kp PG_DN  &kp TAB    &lt_rp _RSYM SPACE        &kp GRAVE  &kp ENTER    &kp ENTER       &kp RBKT       &mo _FN
+				&kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5                 &tog _KPAD                                                               &mo _MOD     &kp N6                &kp N7       &kp N8         &kp N9          &kp N0         &kp MINUS
+				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B                  &none                                                                    &none        &kp J                 &kp L        &kp U          &kp Y           &kp SEMICOLON  &kp TMUX_PFX
+				&kp ESC        &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G                  &kp HYPER  &kp LCTRL     &kp LALT   &none   &none  &kp LGUI   &kp RCTRL  &none        &kp M                 &hm RCTRL N  &hm RSHFT E    &hm RALT I      &hm RGUI O     &kp SQT
+				&mo _FN        &kp Z          &kp X          &kp C            &kp D         &kp V                  &none      &none         &kp HOME   &none   &none  &kp PG_UP  &none      &none        &kp K                 &kp H        &kp COMMA      &kp DOT         &kp FSLH       &mo _FN
+				&mo _FN        &kp GRAVE      &kp LC(A)      &kp ESC          &kp ESC       &lt_rp_hp _LSYM BSPC   &kp ENTER  &kp END                                            &kp PG_DN  &kp TAB      &lt_rp _RSYM SPACE    &kp GRAVE    &kp ENTER      &none           &kp RBKT       &mo _FN
 			>;
 		};
 
         layer_lsym {
             bindings = <
-				&kp EQUAL     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &tog _KPAD                                                  &mo _MOD  &kp N6      &kp N7       &kp N8          &kp N9                &kp N0       &trans
-				&kp EQUAL     &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT     &none                                                       &none     &kp CARET   &kp AMPS     &kp ASTRK       &kp LPAR              &kp RPAR     &trans
-				&none         &kp TAB       &none         &kp DQT       &kp SQT       &kp CAPS      &none          &none  &none   &none   &none  &none   &none  &none     &kp COLON   &kp UNDER    &kp PLUS        &kp LBRC              &kp RBRC     &none
-				&none         &none         &none         &none         &none         &none         &none          &none  &none   &none   &none  &none   &none  &none     &none       &kp PIPE     &kp LESS_THAN   &kp GREATER_THAN      &kp QMARK    &tog _FN
-				&none         &none         &none         &none         &none         &trans        &none          &none                                 &none  &kp LS(TAB)   &kp ESC     &none        &none           &none                 &none        &none
+				&kp EQUAL     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &tog _KPAD                                                 &mo _MOD      &kp N6      &kp N7       &kp N8          &kp N9                &kp N0       &trans
+				&kp EQUAL     &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT     &none                                                      &none         &kp CARET   &kp AMPS     &kp ASTRK       &kp LPAR              &kp RPAR     &trans
+				&none         &kp TAB       &kp TILDE     &kp DQT       &kp SQT       &kp CAPS      &none       &none  &none   &none   &none  &none   &none    &none         &kp COLON   &kp UNDER    &kp PLUS        &kp LBRC              &kp RBRC     &none
+				&none         &none         &none         &kp LC(C)     &kp LC(V)     &none         &none       &none  &none   &none   &none  &none   &none    &none         &none       &kp PIPE     &kp LESS_THAN   &kp GREATER_THAN      &kp QMARK    &tog _FN
+				&none         &none         &none         &none         &none         &trans        &none       &none                                 &none    &kp LS(TAB)   &kp ESC     &none        &none           &none                 &none        &none
             >;
         };
 
@@ -99,7 +99,7 @@
 				&kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4       &kp N5     &none                                                        &none       &kp N6         &kp N7     &kp N8        &kp N9        &kp N0    &kp MINUS
 				&none         &kp F1        &kp F2    &kp F3     &kp F4       &kp F5     &none         &none    &none   &none   &none  &none  &none   &none       &kp F6         &kp MINUS  &kp EQUAL     &kp LBKT      &kp RBKT  &none
 				&none         &kp F7        &kp F8    &kp F9     &kp F10      &kp F11    &none         &none    &none   &none   &none  &none  &none   &none       &kp F12        &kp BSLH   &none         &none         &none     &none
-				&none         &none         &none     &none      &none        &kp ESC    &kp DEL       &none                                  &none   &none       &trans         &none      &none         &none         &none     &none
+				&none         &none         &none     &none      &none        &kp DEL    &kp ESC       &none                                  &none   &none       &trans         &none      &none         &none         &none     &none
             >;
         };
 
