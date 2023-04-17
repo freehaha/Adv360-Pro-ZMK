@@ -17,6 +17,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/backlight.h>
+#include "./helper.h"
 
 #define DEFAULT 0
 #define _LSYM   1
@@ -31,23 +32,95 @@
 #define WWW_PT LC(PG_UP)
 #define WWW_NT LC(PG_DN)
 #define TMUX_PFX LC(A)
+#define LHS_KEYS 0 1 2 3 4 5 6 14 15 16 17 18 19 20 28 29 30 31 32 33 34 48 49 50 51 52 53 68 69 70 71 72
+#define RHS_KEYS 7 8 9 10 11 12 13 21 22 23 24 25 26 27 41 42 43 44 45 46 47 58 63 64 65 66 67 79 80 81 82 83
+#define LHS_THUMBS 35 36 37 54 55 56 57 73 74 75 
+#define RHS_THUMBS 38 39 40 59 60 61 62 76 77 78 
 
+// total of 84 keys
+// 0   1   2   3   4   5   6                            7   8   9   10  11   12   13
+// 14  15  16  17  18  19  20                           21  22  23  24  25   26   27
+// 28  29  30  31  32  33  34  35  36  37   38  39  40  41  42  43  44  45   46   47
+// 48  49  50  51  52  53  54  55  56  57   58  59  60  61  62  63  64  65   66   67
+// 68  69  70  71  72      73  74  75           76  77  78      79  80  81   82   83
+//
+
+#define LT4 15
+#define LT3 16
+#define LT2 17
+#define LT1 18
+#define LT0 19
+#define LM4 29
+#define LM3 30
+#define LM2 31
+#define LM1 32
+#define LM0 33
+#define LB4 48
+#define LB3 49
+#define LB2 50
+#define LB1 51
+#define LB0 52
+#define LH2 73
+#define LH1 74
+#define LH0 75
+
+#define RT4 26
+#define RT3 25
+#define RT2 24
+#define RT1 23
+#define RT0 22
+#define RM4 46
+#define RM3 45
+#define RM2 44
+#define RM1 43
+#define RM0 42
+#define RB4 66
+#define RB3 65
+#define RB2 64
+#define RB1 63
+#define RB0 62
+#define RH2 78
+#define RH1 77
+#define RH0 76
+
+// &kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5    &tog _KPAD                                                                          &mo _MOD              &kp N6       &kp N7       &kp N8         &kp N9         &kp N0         &kp MINUS
+// &kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B     &none                                                                               &none                 &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON  &kp TMUX_PFX
+// &kp ESC        &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G     &kp HYPER              &kp LCTRL  &kp LALT   &none   &none  &kp LGUI   &kp RCTRL    &none                 &kp M        &hm RCTRL N  &hm RSHFT E    &hm RALT I     &hm RGUI O     &kp SQT
+// &mo _FN        &lt_rp _FN Z   &kp X          &kp C            &kp D         &kp V     &none                  &none      &kp HOME   &none   &none  &kp PG_UP  &none        &none                 &kp K        &kp H        &kp COMMA      &kp DOT        &lt_rp _FN FSLH   &mo _FN
+// &mo _FN        &kp GRAVE      &kp LC(A)      &kp ESC          &kp ESC                 &lt_rp_hp _LSYM BSPC   &kp ENTER  &kp END                   &kp PG_DN  &kp TAB      &lt_rp _RSYM SPACE                 &kp GRAVE    &kp ENTER      &none          &kp RBKT       &mo _FN
+ 
 &sl {
     release-after-ms = <400>;
 };
 
+#include "combos.dtsi"
 / {
   behaviors {
     #include "macros.dtsi"
 
-    hm: homerow_mods {
+    hm_l: homerow_mods_left {
         compatible = "zmk,behavior-hold-tap";
-        label = "HOMEROW_MODS";
+        label = "HOMEROW_MODS_LEFT";
         #binding-cells = <2>;
-        tapping-term-ms = <130>;
-        quick_tap_ms = <0>;
-        flavor = "tap-preferred";
         bindings = <&kp>, <&kp>;
+        tapping-term-ms = <280>;
+        quick-tap-ms = <180>;
+        global-quick-tap-ms = <150>;
+        flavor = "balanced";
+        hold-trigger-key-positions = <RHS_KEYS RHS_THUMBS>;
+		hold-trigger-on-release;
+    };
+    hm_r: homerow_mods_right {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HOMEROW_MODS_RIGHT";
+        #binding-cells = <2>;
+        bindings = <&kp>, <&kp>;
+        tapping-term-ms = <280>;
+        quick-tap-ms = <180>;
+        global-quick-tap-ms = <150>;
+        flavor = "balanced";
+        hold-trigger-key-positions = <LHS_KEYS LHS_THUMBS>;
+		hold-trigger-on-release;
     };
     lt_rp: lt_repeat {
         compatible = "zmk,behavior-hold-tap";
@@ -75,11 +148,11 @@
 
 		default_layer {
 			bindings = <
-				&kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5    &tog _KPAD                                                                          &mo _MOD              &kp N6       &kp N7       &kp N8         &kp N9         &kp N0         &kp MINUS
-				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B     &none                                                                               &none                 &kp J        &kp L        &kp U          &kp Y          &kp SEMICOLON  &kp TMUX_PFX
-				&kp ESC        &hm LGUI A     &hm LALT R     &hm LSHFT S      &hm LCTRL T   &kp G     &kp HYPER              &kp LCTRL  &kp LALT   &none   &none  &kp LGUI   &kp RCTRL    &none                 &kp M        &hm RCTRL N  &hm RSHFT E    &hm RALT I     &hm RGUI O     &kp SQT
-				&mo _FN        &lt_rp _FN Z   &kp X          &kp C            &kp D         &kp V     &none                  &none      &kp HOME   &none   &none  &kp PG_UP  &none        &none                 &kp K        &kp H        &kp COMMA      &kp DOT        &lt_rp _FN FSLH   &mo _FN
-				&mo _FN        &kp GRAVE      &kp LC(A)      &kp ESC          &kp ESC                 &lt_rp_hp _LSYM BSPC   &kp ENTER  &kp END                   &kp PG_DN  &kp TAB      &lt_rp _RSYM SPACE                 &kp GRAVE    &kp ENTER      &none          &kp RBKT       &mo _FN
+				&kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5    &tog _KPAD                                                                          &mo _MOD              &kp N6       &kp N7         &kp N8         &kp N9         &kp N0           &kp MINUS
+				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B     &none                                                                               &none                 &kp J        &kp L          &kp U          &kp Y          &kp SEMICOLON    &kp TMUX_PFX
+				&kp ESC        &hm_l LGUI A   &hm_l LALT R   &hm_l LSHFT S    &hm_l LCTRL T &kp G     &kp HYPER              &kp LCTRL  &kp LALT   &none   &none  &kp LGUI   &kp RCTRL    &none                 &kp M        &hm_r RCTRL N  &hm_r RSHFT E  &hm_r RALT I   &hm_r RGUI O     &kp SQT
+				&mo _FN        &lt_rp _FN Z   &kp X          &kp C            &kp D         &kp V     &none                  &none      &kp HOME   &none   &none  &kp PG_UP  &none        &none                 &kp K        &kp H          &kp COMMA      &kp DOT        &lt_rp _FN FSLH  &mo _FN
+				&mo _FN        &kp GRAVE      &kp LC(A)      &kp ESC          &kp ESC                 &lt_rp_hp _LSYM BSPC   &kp ENTER  &kp END                   &kp PG_DN  &kp TAB      &lt_rp _RSYM SPACE                 &kp GRAVE      &kp ENTER      &none          &kp RBKT         &mo _FN
 			>;
 		};
 
