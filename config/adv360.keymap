@@ -24,9 +24,10 @@
 #define _RSYM   2
 #define _KPAD   3
 #define _FN     4
-#define _MOD    5
-#define GAME    6
-#define GEXT    7
+#define _MOU    5
+#define _MOD    6
+#define GAME    7
+#define GEXT    8
 
 #define HYPER    LS(LC(LA(LGUI)))
 #define WWW_PT LC(PG_UP)
@@ -93,19 +94,59 @@
     release-after-ms = <400>;
 };
 
+&caps_word {  // mods deactivate caps-word, requires PR #1441
+    /delete-property/ ignore-modifiers;
+};
+
+&num_word {
+	layers = <_RSYM>;
+};
+
+#define SMART_NUM &smart_num _RSYM 0
+
+#include "mouse.dtsi"
 #include "combos.dtsi"
 / {
   behaviors {
     #include "macros.dtsi"
+
+	// tap: num-word
+	// hold: kpad layer
+	// double tap: stick kpad layer
+	smart_num: smart_num {
+		compatible = "zmk,behavior-hold-tap";
+        flavor = "balanced";
+		label = "SMART_NUM";
+		#binding-cells = <2>;
+		tapping-term-ms = <200>;
+		quick-tap-ms = <180>;
+		bindings = <&mo>, <&num_dance>;
+	};
+
+	num_dance: num_dance {
+		compatible = "zmk,behavior-tap-dance";
+		label = "NUM_DANCE";
+		#binding-cells = <0>;
+		tapping-term-ms = <200>;
+		bindings = <&num_word>, <&sl _KPAD>;
+	};
+
+	smart_shift: smart_shift {
+		compatible = "zmk,behavior-mod-morph";
+		label = "SMART_SHIFT";
+        #binding-cells = <0>;
+        bindings = <&sk LSHIFT>, <&caps_word>;
+		mods = <(MOD_LSFT)>;
+	};
 
     hm_l: homerow_mods_left {
         compatible = "zmk,behavior-hold-tap";
         label = "HOMEROW_MODS_LEFT";
         #binding-cells = <2>;
         bindings = <&kp>, <&kp>;
-        tapping-term-ms = <280>;
+        tapping-term-ms = <200>;
         quick-tap-ms = <180>;
-        global-quick-tap-ms = <150>;
+        global-quick-tap-ms = <130>;
         flavor = "balanced";
         hold-trigger-key-positions = <RHS_KEYS RHS_THUMBS>;
 		hold-trigger-on-release;
@@ -115,9 +156,9 @@
         label = "HOMEROW_MODS_RIGHT";
         #binding-cells = <2>;
         bindings = <&kp>, <&kp>;
-        tapping-term-ms = <280>;
+        tapping-term-ms = <200>;
         quick-tap-ms = <180>;
-        global-quick-tap-ms = <150>;
+        global-quick-tap-ms = <130>;
         flavor = "balanced";
         hold-trigger-key-positions = <LHS_KEYS LHS_THUMBS>;
 		hold-trigger-on-release;
@@ -151,18 +192,18 @@
 				&kp EQUAL      &kp N1         &kp N2         &kp N3           &kp N4        &kp N5    &tog _KPAD                                                                          &mo _MOD              &kp N6       &kp N7         &kp N8         &kp N9         &kp N0           &kp MINUS
 				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B     &none                                                                               &none                 &kp J        &kp L          &kp U          &kp Y          &kp SEMICOLON    &kp TMUX_PFX
 				&kp ESC        &hm_l LGUI A   &hm_l LALT R   &hm_l LSHFT S    &hm_l LCTRL T &kp G     &kp HYPER              &kp LCTRL  &kp LALT   &none   &none  &kp LGUI   &kp RCTRL    &none                 &kp M        &hm_r RCTRL N  &hm_r RSHFT E  &hm_r RALT I   &hm_r RGUI O     &kp SQT
-				&mo _FN        &lt_rp _FN Z   &kp X          &kp C            &kp D         &kp V     &none                  &none      &kp HOME   &none   &none  &kp PG_UP  &none        &none                 &kp K        &kp H          &kp COMMA      &kp DOT        &lt_rp _FN FSLH  &mo _FN
-				&mo _FN        &kp GRAVE      &kp LC(A)      &kp ESC          &kp ESC                 &lt_rp_hp _LSYM BSPC   &kp ENTER  &kp END                   &kp PG_DN  &kp TAB      &lt_rp _RSYM SPACE                 &kp GRAVE      &kp ENTER      &none          &kp RBKT         &mo _FN
+				&smart_mouse   &lt_rp _FN Z   &kp X          &kp C            &kp D         &kp V     &none                  &none      &kp HOME   &none   &none  &kp PG_UP  &none        &none                 &kp K        &kp H          &kp COMMA      &kp DOT        &lt_rp _FN FSLH  &mo _FN
+				&mo _FN        &kp GRAVE      &kp LC(A)      &kp ESC          &kp ESC                 &lt_rp_hp _LSYM BSPC   &kp ENTER  &kp END                   &kp TAB    &smart_shift &lt_rp _RSYM SPACE                 &kp GRAVE      &kp ENTER      SMART_NUM      &kp RBKT         &mo _FN
 			>;
 		};
 
         layer_lsym {
             bindings = <
-				&kp EQUAL     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &tog _KPAD                                                      &mo _MOD      &kp N6      &kp N7       &kp N8          &kp N9                &kp N0       &trans
-				&kp EQUAL     &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT     &none                                                           &none         &kp CARET   &kp AMPS     &kp ASTRK       &kp LPAR              &kp RPAR     &trans
-				&none         &kp TAB       &kp TILDE     &kp DQT       &kp SQT       &kp CAPS      &none       &none  &none   &none   &none  &kp SLCK   &kp INS          &none         &kp COLON   &kp UNDER    &kp PLUS        &kp LBRC              &kp RBRC     &none
+				&kp EQUAL     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5        &tog _KPAD                                                         &mo _MOD      &kp N6      &kp N7       &kp N8          &kp N9                &kp N0       &trans
+				&kp EQUAL     &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT     &none                                                              &none         &kp CARET   &kp AMPS     &kp ASTRK       &kp LPAR              &kp RPAR     &trans
+				&none         &kp TAB       &kp TILDE     &kp DQT       &kp SQT       &kp CAPS      &none       &none  &none   &none   &none  &kp SLCK   &kp INS       &none         &kp COLON   &kp UNDER    &kp PLUS        &kp LBRC              &kp RBRC     &none
 				&none         &none         &none         &kp LC(C)     &none         &kp LC(V)     &none       &none  &none   &none   &none  &none      &none         &none         &none       &kp PIPE     &kp LESS_THAN   &kp GREATER_THAN      &kp QMARK    &tog _FN
-				&none         &none         &none         &none         &none                       &trans      &none  &none                  &none      &kp LS(TAB)   &kp ESC       &none        &none           &none                 &none        &none
+				&none         &none         &none         &none         &none                       &trans      &none  &none                  &none      &kp LS(TAB)   &kp ESC                   &none        &none           &none           &none                 &none
             >;
         };
 
@@ -179,7 +220,7 @@
 		layer_keypad {
             bindings = <
 				&kp EQUAL      &kp N1     &kp N2    &kp N3     &kp N4        &kp N5     &trans                                                               &mo _MOD   &kp N6      &kp KP_NUM    &kp KP_EQUAL   &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
-				&kp TAB        &kp Q      &kp W     &kp E      &kp R         &kp T      &none                                                                &none      &kp Y       &kp KP_N7     &kp KP_N8      &kp KP_N9     &kp KP_MINUS   &kp BSLH
+				&kp TAB        &kp Q      &kp W     &kp E      &kp R         &kp T      &none                                                                &kp KP_NUM &kp Y       &kp KP_N7     &kp KP_N8      &kp KP_N9     &kp KP_MINUS   &kp BSLH
 				&kp ESC        &kp A      &kp S     &kp D      &kp F         &kp G      &none     &kp LCTRL  &kp LALT   &none   &none   &kp LGUI  &kp RCTRL  &to 0      &kp H       &kp KP_N4     &kp KP_N5      &kp KP_N6      &kp KP_PLUS    &kp SQT
 				&kp LSHFT      &kp Z      &kp X     &kp C      &kp V         &kp B      &none     &none      &kp HOME   &none   &none  &kp PG_UP  &none      &none      &kp N       &kp KP_N1     &kp KP_N2      &kp KP_N3     &kp KP_ENTER  &kp RSHFT
 				&mo 2          &kp GRAVE  &kp CAPS  &kp LEFT   &kp RIGHT     &kp BSPC   &kp DEL   &kp END                                         &kp PG_DN  &kp ENTER  &kp KP_N0   &kp UP        &kp DOWN       &kp KP_DOT         &kp RBKT      &mo 2
@@ -188,11 +229,21 @@
 
         layer_fn {
             bindings = <
-				&to GAME &trans         &trans     &trans  &trans  &trans    &none                                                   &none  &trans  &trans    &trans   &trans   &trans   &trans
-				&trans   &kp WWW_PT     &trans     &trans  &trans  &trans    &none                                                   &none  &trans  &kp PG_UP    &kp UP   &kp PG_DN   &kp HOME   &trans
-				&trans   &kp WWW_NT     &trans     &trans  &trans  &trans    &none   &trans  &trans   &none   &none  &trans  &trans  &to 0  &trans  &kp LEFT  &kp DOWN &kp RIGHT   &kp END   &trans
-				&trans   &kp LS(LC(T))  &kp LC(W)  &trans  &trans  &trans    &none   &none  &trans   &none   &none  &trans   &none   &none  &trans  &kp LS(LA(UP)) &kp LS(LA(DOWN)) &kp LS(LC(T))   &kp LS(LC(M))   &trans
-				&trans   &trans         &trans     &trans  &trans  &trans    &trans  &trans                                  &trans  &trans  &trans          &trans    &trans   &trans   &trans   &trans
+				&to GAME &trans         &trans        &trans         &trans  &trans    &none                                                   &none    &trans    &trans          &trans            &trans          &trans          &trans
+				&trans   &kp WWW_PT     &kp LA(LEFT)  &kp LA(RIGHT)  &trans  &trans    &none                                                   &none    &trans    &kp PG_UP       &kp UP            &kp PG_DN       &kp HOME        &trans
+				&trans   &kp WWW_NT     &trans        &trans         &trans  &trans    &none   &trans  &trans   &none   &none  &trans  &trans  &to 0    &trans    &kp LEFT        &kp DOWN          &kp RIGHT       &kp END         &trans
+				&trans   &kp LS(LC(T))  &kp LC(W)     &trans         &trans  &trans    &none   &none   &trans   &none   &none  &trans  &none   &none    &trans    &kp LS(LA(UP))  &kp LS(LA(DOWN))  &kp LS(LC(T))   &kp LS(LC(M))   &trans
+				&trans   &trans         &trans        &trans         &trans            &trans  &trans  &trans                  &trans  &trans  &trans             &trans          &trans            &trans          &trans          &trans
+            >;
+        };
+
+        layer_mouse {
+            bindings = <
+				&trans      &trans         &trans     &trans  &trans  &trans    &none                                                     &none  &trans  &trans    &trans   &trans   &trans   &trans
+				&trans      &kp WWW_PT     &trans     &trans  &trans  &trans    &none                                                     &none  &trans  U_WH_U    U_MS_U   U_WH_D   &kp HOME &trans
+				&trans      &kp WWW_NT     &trans     &trans  &trans  &trans    &none     &trans  &trans   &none   &none  &trans  &trans  &to 0  &trans  U_MS_L    U_MS_D   U_MS_R   &kp END  &trans
+				&tog _MOU   &kp LS(LC(T))  &kp LC(W)  &trans  &trans  &trans    &none     &none   &trans   &none   &none  &trans   &none  &none  &trans  &trans    &trans   &trans   &trans   &trans
+				&trans      &trans         &trans     &trans  &trans            &trans    &trans  &trans                  &trans  U_BTN2  U_BTN1         &trans    &trans   &trans   &trans   &trans
             >;
         };
 
