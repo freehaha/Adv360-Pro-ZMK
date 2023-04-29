@@ -105,6 +105,20 @@
 	layers = <_RSYM>;
 };
 
+/ {
+    behaviors {
+      skq: sticky_key_quick_release {
+        compatible = "zmk,behavior-sticky-key";
+        label = "STICKY_KEY_QUICK_RELEASE";
+        #binding-cells = <1>;
+        bindings = <&kp>;
+        release-after-ms = <1000>;
+        quick-release;
+        ignore-modifiers;
+      };
+    };
+};
+
 #define SMART_NUM &smart_num _RSYM 0
 
 #include "mouse.dtsi"
@@ -138,7 +152,7 @@
 		compatible = "zmk,behavior-mod-morph";
 		label = "SMART_SHIFT";
         #binding-cells = <0>;
-        bindings = <&sk LSHIFT>, <&caps_word>;
+        bindings = <&skq LSHIFT>, <&caps_word>;
 		mods = <(MOD_LSFT)>;
 	};
 
