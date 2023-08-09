@@ -209,7 +209,7 @@
 				&kp TAB        &kp Q          &kp W          &kp F            &kp P         &kp B     &none                                                                       &none     &kp J        &kp L          &kp U          &kp Y          &kp SEMICOLON    &kp TMUX_PFX
 				&kp ESC        &hm_l LGUI A   &hm_l LALT R   &hm_l LSHFT S    &hm_l LCTRL T &kp G     &kp HYPER    &kp LCTRL  &kp LALT   &none   &none  &kp LGUI   &kp RCTRL      &none     &kp M        &hm_r RCTRL N  &hm_r RSHFT E  &hm_r RALT I   &hm_r RGUI O     &kp SQT
 				&smart_mouse   &lt_rp _FN Z   &kp X          &kp C            &kp D         &kp V     &none        &none      &kp HOME   &none   &none  &kp PG_UP  &none          &none     &kp K        &kp H          &kp COMMA      &kp DOT        &lt_rp _FN FSLH  &mo _FN
-				&mo _FN        &kp GRAVE      &kp TMUX_PFX   &kp ESC          &kp ESC                 LSYM         &kp ENTER  &kp END                   &kp TAB    &smart_shift   RSYM                   &kp GRAVE      &kp ENTER      &none          &kp ESC          &mo _FN
+				&mo _FN        &kp GRAVE      &kp TMUX_PFX   &kp ESC          &kp TAB                 LSYM         &kp ENTER  &kp END                   &kp TAB    &smart_shift   RSYM                   &kp GRAVE      &kp ENTER      &kp TMUX_PFX   &kp ESC          &mo _FN
 			>;
 		};
 
@@ -228,7 +228,7 @@
 				&kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4       &kp N5     &tog _KPAD                                                   &trans      &kp N6         &kp N7     &kp N8        &kp N9        &kp N0    &kp MINUS
 				&kp EQUAL     &kp N1        &kp N2    &kp N3     &kp N4       &kp N5     &none                                                        &none       &kp N6         &kp N7     &kp N8        &kp N9        &kp N0    &kp MINUS
 				&none         &kp F1        &kp F2    &kp F3     &kp F4       &kp F5     &none         &none    &none   &none   &none  &none  &none   &to 0       &kp F6         &kp MINUS  &kp EQUAL     &kp LBKT      &kp RBKT  &none
-				&none         &kp F7        &kp F8    &kp F9     &kp F10      &kp F11    &none         &none    &none   &none   &none  &none  &none   &none       &kp F12        &kp BSLH   &none         &none         &none     &none
+				&none         &kp F7        &kp F8    &kp F9     &kp F10      &kp F11    &none         &none    &none   &none   &none  &none  &none   &none       &kp F12        &kp BSLH   &kp PIPE2     &kp NUBS      &none     &none
 				&none         &none         &none     &none      &none                   &kp DEL       &kp ESC  &none                  &none  &none   &trans                     &none      &none         &none         &none     &none
             >;
         };
